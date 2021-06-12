@@ -33,3 +33,5 @@ Offcourse your app will be Authenticated for signedIn Users but the main purpose
 
 2. Add Bucket policy
 Effect: Allow, principle - * (This rule is applicable to everywhere in the world) and make sure you select your  "Action": "s3:GetObject" (Retrieval of images) for your specific arn bucket.
+
+If you are not aware about writing policies, no need to worry. This Link will help you to create one => https://awspolicygen.s3.amazonaws.com/policygen.html
