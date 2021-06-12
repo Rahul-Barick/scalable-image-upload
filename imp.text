@@ -1,0 +1,35 @@
+After creating aws s3 bucket make sure you add certain set of permissions.
+1. Cross-origin resource sharing (CORS) - make sure you add AllowedOrigins to your domain of your App
+
+[
+    {
+        "AllowedHeaders": [
+            "*"
+        ],
+        "AllowedMethods": [
+            "PUT"
+        ],
+        "AllowedOrigins": [
+            "http://localhost:3000"
+        ],
+        "ExposeHeaders": []
+    },
+    {
+        "AllowedHeaders": [
+            "Authorization"
+        ],
+        "AllowedMethods": [
+            "GET"
+        ],
+        "AllowedOrigins": [
+            "*"
+        ],
+        "ExposeHeaders": []
+    }
+]
+
+Reason:- Your App is integrated with your upload API which will be able do network request. If any malicious-site.com integrate your API in their App which will help their users to upload images in your aws bucket...This can lead to serious issues.
+Offcourse your app will be Authenticated for signedIn Users but the main purpose of this repo is to scale for image upload and not focusing on Authenication for signedIn users :)
+
+2. Add Bucket policy
+Effect: Allow, principle - * (This rule is applicable to everywhere in the world) and make sure you select your  "Action": "s3:GetObject" (Retrieval of images) for your specific arn bucket.
